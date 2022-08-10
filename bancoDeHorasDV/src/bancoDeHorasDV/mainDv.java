@@ -77,16 +77,14 @@ public class mainDv {
 	private static void add(Scanner scanner, FuncionarioRepository Fr) throws IOException {
 		System.out.println("Qual nome do novo funcionário?\n");
 		String nome = scanner.next();
-		Fr.add(nome);
-		System.out.println("Funcionário adicionado com sucesso.\n");
+		System.out.println(Fr.add(nome));
 	}
 	
 	private static void remove(Scanner scanner, FuncionarioRepository Fr) throws IOException {
 		System.out.println(Fr.todosFuncionarios());
 		System.out.println("Qual número do funcionário desejado?\n");
 		int id = scanner.nextInt();
-		Fr.remove(id);
-		System.out.println("Funcionário removido com sucesso.\n");
+		System.out.println(Fr.remove(id));
 	}
 
 }

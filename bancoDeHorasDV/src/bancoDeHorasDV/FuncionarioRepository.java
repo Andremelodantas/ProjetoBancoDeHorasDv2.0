@@ -3,7 +3,6 @@ package bancoDeHorasDV;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,7 +19,8 @@ public class FuncionarioRepository {
 		this.listaFuncionarios = new ArrayList<Funcionario>();
 		/*
 		 * ADIÇAO MANUAL. OBSOLETA
-		 * this.Funcionario = new Funcionario("Andrezinho");
+		 * 
+		this.Funcionario = new Funcionario("Andrezinho");
 		this.listaFuncionarios.add(Funcionario);
 		
 		this.Funcionario = new Funcionario("Vaqueiro");
@@ -79,17 +79,17 @@ public class FuncionarioRepository {
 
 	public String alterarHora(int posicao, int horas) throws IOException {
 		if(posicao<0 || posicao>this.listaFuncionarios.size()) {
-			return "número do funcionário invalido.";
+			return "número do funcionário invalido.\n";
 		}
 		this.listaFuncionarios.get(posicao).registrarHoras(horas);
 		armazenarBD();
-		return "Registro feito com sucesso.\n";
+		return "Alteração feita com sucesso.\n";
 		
 	}
 	
 	public String getSaldo(int posicao) {
 		if(posicao<0 || posicao>this.listaFuncionarios.size()) {
-			return "número do funcionário invalido.";
+			return "número do funcionário invalido.\n";
 		}
 		else if(posicao == 0) {
 			String retorno = "Lista de funcionários:\n";
@@ -107,15 +107,24 @@ public class FuncionarioRepository {
 		
 	}
 	
-	public void remove(int id) throws IOException {
+	public String remove(int id) throws IOException {
+		if(id<1 || id>this.listaFuncionarios.size()){
+			return "Id invalido.";
+		}
 		this.listaFuncionarios.remove(id-1);
 		armazenarBD();
+		return "Funcionário removido com sucesso.\n";
 	}
 	
-	public void add(String nome) throws IOException {
+	public String add(String nome) throws IOException {
 		this.Funcionario = new Funcionario(nome);
 		this.listaFuncionarios.add(Funcionario);
 		armazenarBD();
+		return "Funcionário adicionado com sucesso.\n";
+	}
+	
+	public int getTamanho() {
+		return this.listaFuncionarios.size();
 	}
 	
 	
